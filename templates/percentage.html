@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Auto Chart</title>
+    <script src="https://devhtml.dev.bloomberg.com/~lbonanomi2/chartjs/dist/Chart.bundle.js"></script>
+    <script src="https://devhtml.dev.bloomberg.com/~lbonanomi2/chartjs/samples/utils.js"></script>
+    <style> canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>
+</head>
+
+
+<body>
+    <div id="canvas-holder" style="width:50%"><canvas id="chart-area"></canvas></div>
+
+    <script>
+        var randomScalingFactor = function() { return Math.round(Math.random() * 100); };
+        var chartColors = window.chartColors;
+        var color = Chart.helpers.color;
+        var config = { data: { datasets: [{ data: [ {% for result in marks %} {{ result[1] }}, {% endfor %} ], label: 'My dataset' }], labels: [ {% for result in marks %} "{{ result[0] }}", {% endfor %} ] },
+        options: { responsive: true, legend: { display: false, position: 'bottom', }, title: { display: true, text: '' }, scale: { ticks: { stepSize: 10, beginAtZero: true, max: 100 }, reverse: false }, animation: { animateRotate: false, animateScale: true } } };
+        window.onload = function() { var ctx = document.getElementById("chart-area"); window.myPolarArea = Chart.PolarArea(ctx, config); };
+    </script>
+</body>
+
+</html>
