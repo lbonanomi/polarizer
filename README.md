@@ -1,1 +1,1 @@
-Generate Chart.js polar area graphs from csv data fed to STDIN
+Generate [Chart.js](http://www.chartjs.org) polar area graphs from streamed 2-column csv data
