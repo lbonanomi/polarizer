@@ -3,10 +3,14 @@
 
 <head>
     <title>Auto Chart</title>
-    <script src="static/Chart.bundle.js"></script>
-    <script src="static/utils.js"></script>
+    <script src="https://devhtml.dev.bloomberg.com/~lbonanomi2/chartjs/dist/Chart.bundle.js"></script>
+    <script src="https://devhtml.dev.bloomberg.com/~lbonanomi2/chartjs/samples/utils.js"></script>
+
+    <!-- <script src="static/Chart.bundle.js"></script> -->
+    <!-- <script src="static/utils.js"></script> -->
     <style> canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; } </style>
 </head>
+
 
 
 <body>
@@ -16,8 +20,24 @@
         var randomScalingFactor = function() { return Math.round(Math.random() * 100); };
         var chartColors = window.chartColors;
         var color = Chart.helpers.color;
-        var config = { data: { datasets: [{ data: [ {% for result in marks %} {{ result[1] }}, {% endfor %} ], label: 'My dataset' }], labels: [ {% for result in marks %} "{{ result[0] }}", {% endfor %} ] },
-        options: { responsive: true, legend: { display: false, position: 'bottom', }, title: { display: true, text: '' }, scale: { ticks: { stepSize: 1, beginAtZero: true }, reverse: false }, animation: { animateRotate: false, animateScale: true } } };
+
+		var config = { data: { datasets: [{ data: [ {% for result in marks %} {{ result[1] }}, {% endfor %} ],
+
+		backgroundColor: [
+
+		{% set palette = ["FF0000", "FF1493", "FF8C00", "FFD700", "00FF00", "00BFFF", "9400D3", "DC143C", "FF69B4", "FFA500", "FFFF00", "2E8B57", "00FFFF", "7B68EE", "B22222" ] %}
+		{% for i in range(0,14) %}
+			{% if palette[i] is defined %}
+				'#{{palette[i]}}',
+			{% else %}
+				color(chartColors.gray).alpha(0.5).rgbString(),
+			{% endif %}
+		{% endfor %}
+		color(chartColors.gray).alpha(0.5).rgbString()
+		],
+
+		label: 'My dataset' }], labels: [ {% for result in marks %} "{{ result[0] }}", {% endfor %} ] },
+        options: { responsive: true, legend: { display: true, position: 'bottom', }, title: { display: true, text: '' }, scale: { ticks: { beginAtZero: true }, reverse: false }, animation: { animateRotate: false, animateScale: false } } };
         window.onload = function() { var ctx = document.getElementById("chart-area"); window.myPolarArea = Chart.PolarArea(ctx, config); };
     </script>
 </body>
