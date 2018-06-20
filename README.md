@@ -1,6 +1,6 @@
 # polarizer
 
-> A picture is worth 1,000 words
+> A picture is worth 1,000 words  
 > -Frederick R. Barnard, allegedly
 
 
@@ -12,6 +12,8 @@ polarizer accepts csv data (in the form of value,label) from <STDIN> and graphs 
 ## Got a screenshot?
 
 Sure!
+
+Data without a quantifier is scaled automagically by Chart.js:
 
 ```du -ms ~ | sort -rnk1 | awk '{ print $1","$2 }' | head -10 | ~/polarizer/polarize.py```:
 
