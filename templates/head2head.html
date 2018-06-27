@@ -34,8 +34,8 @@
 		],
 
 		label: 'My dataset' }], labels: [ {% for result in marks %} "{{ result[0] }}", {% endfor %} ] },
-        options: { responsive: true, legend: { display: true, position: 'bottom', }, title: { display: true, text: '' }, scale: { ticks: { beginAtZero: true }, reverse: false }, animation: { animateRotate: false, animateScale: false } } };
-        window.onload = function() { var ctx = document.getElementById("chart-area"); window.myPolarArea = Chart.PolarArea(ctx, config); };
+        	options: { responsive: true, legend: { display: {% if marks|length > 8 %} true {% else %} false {% endif %}, position: 'bottom', }, title: { display: true, text: '' }, scale: { ticks: { beginAtZero: true }, reverse: false }, animation: { animateRotate: false, animateScale: false } } };
+        	window.onload = function() { var ctx = document.getElementById("chart-area"); window.myPolarArea = Chart.PolarArea(ctx, config); };
     </script>
 </body>
 
