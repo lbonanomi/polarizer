@@ -13,8 +13,16 @@ from flask import Flask, render_template
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
+
+try:
+	port = int(sys.argv[1])
+except IndexError:
+	port = 9990
+
+
 set_data = []
 scale = 'head2head.html'
+
 
 for line in sys.stdin.readlines():
 	line = line.strip()
@@ -45,7 +53,7 @@ if len(set_data) == 0:
 
 app = Flask(__name__)
 
-sys.stderr.write("listening on port 9990")
+sys.stderr.write("listening on port " + str(port) + "\n")
 
 
 @app.route('/', methods=['GET'])
@@ -54,4 +62,4 @@ def draw():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=9990)
+	app.run(host='0.0.0.0', port=port)
