@@ -2,6 +2,7 @@
 
 """Grouping with ChartJS"""
 
+import os
 import sys
 import logging
 from flask import Flask, render_template
@@ -62,4 +63,7 @@ def draw():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=port)
+    if os.path.isfile('cert.pem') and os.path.isfile('key.pem'):
+        app.run(host='0.0.0.0', port=9990, ssl_context=('cert.pem', 'key.pem'))
+    else:
+        app.run(host='0.0.0.0', port=9990)
