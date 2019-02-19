@@ -50,7 +50,7 @@ for line in sys.stdin.readlines():
         except IndexError:
             continue
 
-if len(set_data) == 0:
+if not set_data:
     sys.stderr.write("Nothing to graph. Quitting.\n")
     sys.exit(1)
 
