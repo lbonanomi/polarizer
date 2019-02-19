@@ -1,5 +1,7 @@
 #!/bin/python3.6
 
+# pylint: disable=C0103
+
 """Grouping with ChartJS"""
 
 import os
