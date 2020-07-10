@@ -34,7 +34,3 @@ Polarizer was assembled[*](#hat-tip) for use with [cosanguine.py](https://github
 ## Hat-Tip
 
 [Chart.js](http://www.chartjs.org) and [Flask](http://flask.pocoo.org/). I didn't really build this thing, I just put it together.
-
-
-<!-- Yep, i'm collecting your IP address. -->
-<img src="https://evening-spire-71333.herokuapp.com/">
